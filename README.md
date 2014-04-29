@@ -18,7 +18,9 @@ Many thanks to [MSKCC](http://www.mskcc.org/)'s [cBioPortal](http://www.cbioport
 
 cbio.getTypesOfCancer( callbackFunction );
 
-example: <i>cbio.getTypesOfCancer()</i>
+example: <i>
+	
+	cbio.getTypesOfCancer()</i>
 
 ### getCancerStudies
 
@@ -30,13 +32,19 @@ example: <i>cbio.getCancerStudies();</i>
 
 cbio.getGeneticProfiles( "cancer study ID (required)" , callbackFunction)
 
-example: <i>cbio.getGeneticProfiles("gbm_tcga") </i>
+example: <i>
+	
+	cbio.getGeneticProfiles("gbm_tcga") 
+</i>
 
 ### getCaseLists
 
 cbio.getCaseLists(cancer_study_id)
 
-example: <i> cbio.getCaseLists("gbm_tcga") </i>
+example: <i> 
+	
+	cbio.getCaseLists("gbm_tcga") 
+</i>
 
 ### getProfileData
 
@@ -48,9 +56,12 @@ cbio.getProfileData({
 
 examples: 
 
-<i> cbio.getProfileData({case_set_id:"gbm_tcga_all",genetic_profile_id:"gbm_tcga_mutations",gene_list:["BRCA1","BRCA2","TP53"]})
+<i> 
 
-cbio.getProfileData({case_set_id:"gbm_tcga_all",genetic_profile_id:["gbm_tcga_log2CNA","gbm_tcga_gistic"],gene_list:"EGFR"})</i>
+	cbio.getProfileData({case_set_id:"gbm_tcga_all",genetic_profile_id:"gbm_tcga_mutations",gene_list:["BRCA1","BRCA2","TP53"]})
+
+	cbio.getProfileData({case_set_id:"gbm_tcga_all",genetic_profile_id:["gbm_tcga_log2CNA","gbm_tcga_gistic"],gene_list:"EGFR"})
+</i>
 
 ### getMutationData
 
@@ -62,15 +73,23 @@ cbio.getMutationData({
 
 examples: 
 
-<i> cbio.getMutationData({case_set_id:"gbm_tcga_all",genetic_profile_id:"gbm_tcga_mutations",gene_list:["EGFR","PTEN"]})
+<i> 
 
-cbio.getMutationData({genetic_profile_id:["ov_tcga_mutations","ucec_tcga_mutations"],gene_list:"BRCA1"})</i>
+	cbio.getMutationData({case_set_id:"gbm_tcga_all",genetic_profile_id:"gbm_tcga_mutations",gene_list:["EGFR","PTEN"]})
+
+	cbio.getMutationData({genetic_profile_id:["ov_tcga_mutations","ucec_tcga_mutations"],gene_list:"BRCA1"})
+</i>
 
 ### getClinicalData
 
 cbio.getClinicalData("case set ID (required)")
 
-example: <i> cbio.getClinicalData("ov_tcga_all") </i>
+example: <i> 
+
+	
+	cbio.getClinicalData("ov_tcga_all") 
+
+</i>
 
 ### getProteinArrayInfo
 
@@ -79,6 +98,7 @@ cbio.getProteinArrayInfo({cancer_study_id: "cancer study ID (required)",protein_
 examples:
 
 <i> 
+	
 	cbio.getProteinArrayInfo({cancer_study_id:"coadread_tcga"})
 
 	cbio.getProteinArrayInfo({cancer_study_id:"coadread_tcga",protein_array_type:"phosphorylation"})
@@ -93,6 +113,7 @@ cbio.getProteinArrayData({case_set_id: "case set ID (required)", array_info: [1 
 examples:
 
 <i>
+	
 	cbio.getProteinArrayData("coadread_tcga_RPPA")
 
 	cbio.getProteinArrayData({case_set_id:"coadread_tcga_RPPA"})
@@ -106,12 +127,18 @@ examples:
 
 cbio.getLinkStudy(parms)
 
-example: <i> cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}) </i>
+example: <i> 
+	
+	cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}) 
+</i>
 
 ### getLinkCase
 
 cbio.getLinkCase(parms)
 
-example: <i> cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"}) </i>
+example: <i> 
+	
+	cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"}) 
+</i>
 
 
