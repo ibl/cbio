@@ -16,7 +16,8 @@ cbio.fetch = function(cmd,fun){ // submit command cmd to cbio WebAPI and process
 	var uid = this.uid('fetch');
 	this.fetch.callbacks[uid]={
 		cmd:cmd,
-		fun:fun
+		fun:fun,
+		t:Date.now()
 	}
 	$.getScript('https://script.google.com/macros/s/AKfycbwsJ5_WKUUZX1ccf7m1zYbtksCm-FEck_uC2agZv_DXAzsS7H4p/exec?cmd='+cmd+'&callback=cbio.fetch.callbacks.'+uid+'.fun');
 	//$.getScript('https://script.google.com/macros/s/AKfycbwsJ5_WKUUZX1ccf7m1zYbtksCm-FEck_uC2agZv_DXAzsS7H4p/exec')
@@ -38,9 +39,21 @@ cbio.table=function(x){ // converts cbio JSON into a table object
 	return y;
 }
 
+cbio.parms = function(x){ // converts JSON formated parameters into URL call query arguments
+	var y = '';
+	for (var f in x){
+		y+=f+'='+x[f]+'&';
+	}
+	return encodeURI(y.slice(0,y.length-1));
+}
+
 // cBio webAPI commands
 cbio.getTypesOfCancer=function(fun){
 	if(!fun){fun = function(x){console.log(cbio.table(x))}};
-	cbio.fetch('getTypesOfCancer',fun);
-	return 'cBio cmd=getTypesOfCancer';
+	return cbio.fetch('getTypesOfCancer',fun);
+}
+
+cbio.getCancerStudies=function(fun){
+	if(!fun){fun = function(x){console.log(cbio.table(x))}};
+	return cbio.fetch('getCancerStudies',fun);
 }
