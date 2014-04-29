@@ -9,12 +9,23 @@ cbio.uid=function(x){
 	return x+Math.random().toString().slice(2)
 }
 
+cbio.getScript = function (url,cb,er){ // load script / JSON
+	var s = document.createElement('script');
+	s.src=url;
+	s.id = this.uid();
+	if(!!cb){s.onload=cb}
+	if(!!er){s.onerror=er}
+	document.head.appendChild(s);
+	setTimeout('document.head.removeChild(document.getElementById("'+s.id+'"));',30000); // is the waiting still needed ?
+	return s.id;
+}
+
 cbio.get = function(cmd,fun,parms){ // submit command cmd to cbio WebAPI and process it through callback function fun
 	if(!cmd){cmd='getTypesOfCancer'}; // see http://www.cbioportal.org/public-portal/web_api.jsp for list of comands
 	if(!fun){fun=function(x){console.log(cbio.table(x))}};
 	if(!cbio.get.callbacks){cbio.get.callbacks={}};
-	var uid = this.uid('fetch');
-	this.get.callbacks[uid]={
+	var uid = this.uid('get');
+	this.get.callbacks[uid]={ // maybe this can be used as a cache to avoid repeating calls
 		cmd:cmd,
 		fun:fun,
 		t:Date.now()
@@ -25,7 +36,7 @@ cbio.get = function(cmd,fun,parms){ // submit command cmd to cbio WebAPI and pro
 		var Qparms="&";
 		Qparms+=cbio.parms(parms);
 	}
-	$.getScript('https://script.google.com/macros/s/AKfycbwsJ5_WKUUZX1ccf7m1zYbtksCm-FEck_uC2agZv_DXAzsS7H4p/exec?cmd='+cmd+'&callback=cbio.get.callbacks.'+uid+'.fun'+Qparms);
+	this.getScript('https://script.google.com/macros/s/AKfycbwsJ5_WKUUZX1ccf7m1zYbtksCm-FEck_uC2agZv_DXAzsS7H4p/exec?cmd='+cmd+'&callback=cbio.get.callbacks.'+uid+'.fun'+Qparms);
 	//$.getScript('https://script.google.com/macros/s/AKfycbwsJ5_WKUUZX1ccf7m1zYbtksCm-FEck_uC2agZv_DXAzsS7H4p/exec')
 	// https://script.google.com/macros/s/AKfycbzyVWTAXybGiTfiZXv3cy5CFO8b9Wn4noStMdSYFSCBNvVG2pME/exec
 	return uid;
