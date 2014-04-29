@@ -18,12 +18,54 @@ Many thanks to [MSKCC](http://www.mskcc.org/)'s [cBioPortal](http://www.cbioport
 
 cbio.getTypesOfCancer( callbackFunction );
 
+example: <i>cbio.getTypesOfCancer()</i>
+
 ### getCancerStudies
 
 cbio.getCancerStudies( callbackFunction );
 
+example: <i>cbio.getCancerStudies();</i>
+
 ### getGeneticProfiles
 
-cbio.getGeneticProfiles( callbackFunction , "cancer study ID")
+cbio.getGeneticProfiles( "cancer study ID (required)" , callbackFunction)
+
+example: <i>cbio.getGeneticProfiles("gbm_tcga") </i>
+
+### getProfileData
+
+cbio.getProfileData({ 
+	case_set_id: "case set ID (required)" , 
+	genetic_profile_id: "one or more genetic profile IDs (required)",
+	gene_list: "one or more HUGO Gene Symbols or Entrez Gene IDs (required)" 
+})
+
+examples: 
+
+<i> cbio.getProfileData({case_set_id:"gbm_tcga_all",genetic_profile_id:"gbm_tcga_mutations",gene_list:["BRCA1","BRCA2","TP53"]})
+
+cbio.getProfileData({case_set_id:"gbm_tcga_all",genetic_profile_id:["gbm_tcga_log2CNA","gbm_tcga_gistic"],gene_list:"EGFR"})</i>
+
+### getMutationData
+
+cbio.getMutationData({ 
+	genetic_profile_id: "one or more mutation profile IDs (required)",
+	case_set_id: "case set ID (optional)",
+	gene_list: "one or more HUGO Gene Symbols or Entrez Gene IDs (required)"
+})
+
+examples: 
+
+<i> cbio.getMutationData({case_set_id:"gbm_tcga_all",genetic_profile_id:"gbm_tcga_mutations",gene_list:["EGFR","PTEN"]})
+
+cbio.getMutationData({genetic_profile_id:["ov_tcga_mutations","ucec_tcga_mutations"],gene_list:"BRCA1"})</i>
+
+### getClinicalData
+
+cbio.getClinicalData("case set ID (required)")
+
+example: <i> cbio.getClinicalData('ov_tcga_all') </i>
+
+
 
 
