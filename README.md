@@ -32,6 +32,12 @@ cbio.getGeneticProfiles( "cancer study ID (required)" , callbackFunction)
 
 example: <i>cbio.getGeneticProfiles("gbm_tcga") </i>
 
+### getCaseLists
+
+cbio.getCaseLists(cancer_study_id)
+
+example: <i> cbio.getCaseLists("gbm_tcga") </i>
+
 ### getProfileData
 
 cbio.getProfileData({ 
@@ -64,8 +70,48 @@ cbio.getMutationData({genetic_profile_id:["ov_tcga_mutations","ucec_tcga_mutatio
 
 cbio.getClinicalData("case set ID (required)")
 
-example: <i> cbio.getClinicalData('ov_tcga_all') </i>
+example: <i> cbio.getClinicalData("ov_tcga_all") </i>
 
+### getProteinArrayInfo
 
+cbio.getProteinArrayInfo({cancer_study_id: "cancer study ID (required)",protein_array_type:"protein_level or phosphorylation", gene_list:["one or more HUGO Gene Symbols or Entrez Gene IDs"]})
+
+examples:
+
+<i> 
+	cbio.getProteinArrayInfo({cancer_study_id:"coadread_tcga"})
+
+	cbio.getProteinArrayInfo({cancer_study_id:"coadread_tcga",protein_array_type:"phosphorylation"})
+
+	cbio.getProteinArrayInfo({cancer_study_id:"coadread_tcga",protein_array_type:"protein_level",gene_list:["ERBB2","TP53"]})
+</i>
+
+### getProteinArrayData
+
+cbio.getProteinArrayData({case_set_id: "case set ID (required)", array_info: [1 or 0]. If 1, antibody information will also be exported})
+
+examples:
+
+<i>
+	cbio.getProteinArrayData("coadread_tcga_RPPA")
+
+	cbio.getProteinArrayData({case_set_id:"coadread_tcga_RPPA"})
+
+	cbio.getProteinArrayData({case_set_id:"coadread_tcga_RPPA",array_info:1})
+</i>
+
+---
+
+### getLinkStudy
+
+cbio.getLinkStudy(parms)
+
+example: <i> cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}) </i>
+
+### getLinkCase
+
+cbio.getLinkCase(parms)
+
+example: <i> cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"}) </i>
 
 

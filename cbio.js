@@ -73,12 +73,14 @@ cbio.getCancerStudies=function(fun){
 
 cbio.getGeneticProfiles=function(cancer_study_id,fun){
 	// cancer_study_id is required, for example "gbm_tcga"
-	return cbio.get('getGeneticProfiles',fun,{cancer_study_id:cancer_study_id});
+	if(typeof(cancer_study_id)=='string'){cancer_study_id={cancer_study_id:cancer_study_id}};
+	return cbio.get('getGeneticProfiles',fun,cancer_study_id);
 }
 
 cbio.getCaseLists=function(cancer_study_id,fun){
 	// cancer_study_id is required, for example "gbm_tcga"
-	return cbio.get('getCaseLists',fun,{cancer_study_id:cancer_study_id});
+	if(typeof(cancer_study_id)=='string'){cancer_study_id={cancer_study_id:cancer_study_id}};
+	return cbio.get('getCaseLists',fun,cancer_study_id);
 }
 
 cbio.getProfileData=function(parms,fun){
@@ -97,7 +99,31 @@ cbio.getMutationData=function(parms,fun){
 
 cbio.getClinicalData=function(case_set_id,fun){
 	// case_set_id is required, for example "ov_tcga_all"
-	return cbio.get('getClinicalData',fun,{case_set_id:case_set_id});
+	if(typeof(case_set_id)=='string'){case_set_id={case_set_id:case_set_id}};
+	return cbio.get('getClinicalData',fun,case_set_id);
 }
 
+cbio.getProteinArrayInfo=function(parms,fun){
+	// cancer_study_id= [cancer study ID] (required)
+	// protein_array_type= [protein_level or phosphorylation]
+	// gene_list= [one or more genes, specified as HUGO Gene Symbols or Entrez Gene IDs]. Multiple genes must be separated by comma (,) characters, or URL encoded spaces, e.g. +
+	return cbio.get('getProteinArrayInfo',fun,parms);
+}
+
+cbio.getProteinArrayData=function(parms,fun){
+	// case_set_id= [case set ID] (required)
+	// array_info= [1 or 0]. If 1, antibody information will also be exported.
+	if(typeof(parms)=='string'){parms={case_set_id:parms}};
+	return cbio.get('getProteinArrayData',fun,parms);
+}
+
+cbio.getLinkStudy=function(parms){
+	// i.e. parms={cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}
+	return "http://www.cbioportal.org/public-portal/link.do?"+cbio.parms(parms);
+}
+
+cbio.getLinkCase=function(parms){
+	// i.e. parms={case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"}
+	return "http://www.cbioportal.org/public-portal/case.do?"+cbio.parms(parms);
+}
 
