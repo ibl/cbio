@@ -138,8 +138,9 @@ cbio.getProteinArrayData=function(parms,fun){
 	return cbio.get('getProteinArrayData',fun,parms);
 }
 
-cbio.getLinkStudy=function(parms){
+cbio.getLinkStudy=function(parms,op){
 	// i.e. parms={cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}
+	// example: cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]},'cbio')
 	url = "http://www.cbioportal.org/public-portal/link.do?"+cbio.parms(parms);
 	this.openUrl(url,op);
 	return url

@@ -129,14 +129,21 @@ cbio.getLinkStudy(parms)
 
 example: 
 
-	cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}) 
+	cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}) // returns URL
+
+	cbio.getLinkStudy({cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]})  // opens URL
 
 ### getLinkCase
 
 cbio.getLinkCase(parms)
 
-example: 
+examples: 
 	
-	cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"}) 
+	cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"})  // returns URL
 
+	cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"},'cbio')  // opens URL
+
+### oncoprint
+
+...
 
