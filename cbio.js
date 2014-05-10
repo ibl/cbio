@@ -2,11 +2,16 @@ cbio={};
 
 cbio.hello = function(){
 	console.log('cbio :-)');
+	return false
 }
 
 cbio.uid=function(x){
 	if(!x){x='UID'};
 	return x+Math.random().toString().slice(2)
+}
+
+cbio.removeEl=function(id){
+	document.getElementById(id).parentNode.removeChild(document.getElementById(id))
 }
 
 cbio.getScript = function (url,cb,er){ // load script / JSON
@@ -135,16 +140,51 @@ cbio.getProteinArrayData=function(parms,fun){
 
 cbio.getLinkStudy=function(parms){
 	// i.e. parms={cancer_study_id:"gbm_tcga",gene_list:["EGFR","NF1"]}
-	return "http://www.cbioportal.org/public-portal/link.do?"+cbio.parms(parms);
+	url = "http://www.cbioportal.org/public-portal/link.do?"+cbio.parms(parms);
+	this.openUrl(url,op);
+	return url
 }
 
-cbio.getLinkCase=function(parms){
+cbio.getLinkCase=function(parms,op){
 	// i.e. parms={case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"}
-	return "http://www.cbioportal.org/public-portal/case.do?"+cbio.parms(parms);
+	// example: 
+	// cbio.getLinkCase({case_id:"TCGA-81-5910",cancer_study_id:"gbm_tcga"},"cbio")
+	url = "http://www.cbioportal.org/public-portal/case.do?"+cbio.parms(parms);
+	this.openUrl(url,op);
+	return url
 }
 
+cbio.openUrl = function(url,op){
+	switch(op){
+	case undefined:
+		break; // move on
+	case 1: // open in a new window
+		window.open(url);
+		break;
+	case 2: // open in new iframe 
+		4
+		break;
+	default: // treating op as the parent DOM element
+		if(typeof(op)=="object"){var parentEl = op}
+		else { // op is the id of the parent DOM element
+			var parentEl = document.getElementById(op);
+			if(!parentEl){ // if not found create it and drop it in the body
+				var parentEl = document.createElement('div');
+				document.body.appendChild(parentEl);
+			}
+		}
+		var div = document.createElement('div');
+		div.id=cbio.uid();
+		//div.innerHTML='<a href="'+url+'" target=_blank>Open</a> in new window; <button style="color:red" onclick="cbio.removeEl(\''+div.id+'\')">Remove</button>';
+		div.innerHTML='<button onclick="window.open(\''+url+'\');" style="color:blue">Open</button> in new window; <button style="color:red" onclick="cbio.removeEl(\''+div.id+'\')">Remove</button>';
+		parentEl.appendChild(div);
+		var ifr = document.createElement('iframe');
+		div.appendChild(ifr);ifr.width="100%";ifr.height="100%";
+		ifr.src=url;
+	}
+	return false;
+}
 
-cbioCache={} // caching get calls here
-
+cbio.oncoprint
 
 
