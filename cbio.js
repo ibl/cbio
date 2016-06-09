@@ -27,6 +27,11 @@ cbio.getScript = function (url,cb,er){ // load script / JSON
 
 cbio.get = function(cmd,fun,parms){ // submit command cmd to cbio WebAPI and process it through callback function fun
 	if(!cmd){cmd='getTypesOfCancer'}; // see http://www.cbioportal.org/public-portal/web_api.jsp for list of comands
+	if(typeof(fun)=="object"){ // check if fun and parms are swicthed over
+		var fun0=parms
+		parms=fun
+		fun=fun0
+	}
 	if(!fun){fun=function(x){console.log(cbio.table(x))}};
 	if(!cbio.get.callbacks){cbio.get.callbacks={}};
 	if(!cbio.get.cache){cbio.get.cache={}};

@@ -45,6 +45,20 @@ is the same as
 ```javascript
 cbio.get(
 	"getProteinArrayData",
+	{
+		case_set_id:"coadread_tcga_RPPA",
+		array_info:1
+	},
+	function(x){console.log(cbio.table(x))}
+)
+
+```
+
+or
+
+```javascript
+cbio.get(
+	"getProteinArrayData",
 	function(x){console.log(cbio.table(x))},
 	{
 		case_set_id:"coadread_tcga_RPPA",
@@ -54,7 +68,7 @@ cbio.get(
 
 ```
 
-(note the change in position between fun and parms)
+(note the code will check for switch over vars fun and parms)
 
 ### getTypesOfCancer
 ```javascript
