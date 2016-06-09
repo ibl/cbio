@@ -40,6 +40,22 @@ cbio.getProteinArrayData(
 
 ```
 
+is the same as
+
+```javascript
+cbio.get(
+	"getProteinArrayData",
+	function(x){console.log(cbio.table(x))},
+	{
+		case_set_id:"coadread_tcga_RPPA",
+		array_info:1
+	}
+)
+
+```
+
+(note the change in position between fun and parms)
+
 ### getTypesOfCancer
 
 cbio.getTypesOfCancer( callbackFunction );
