@@ -28,7 +28,7 @@ cbio.getTypesOfCancer is cbio.get('getTypesOfCancer')
 
 and
 
-‘’’javascript
+```javascript
 
 cbio.getProteinArrayData(
 	{
@@ -38,7 +38,7 @@ cbio.getProteinArrayData(
 	function(x){console.log(cbio.table(x))}
 )
 
-‘’’
+```
 
 ### getTypesOfCancer
 
