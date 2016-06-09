@@ -4,7 +4,7 @@ All you need is
 
 	<script src="https://ibl.github.io/cbio/cbio.js"></script>
 
-Live at: [http://ibl.github.io/cbio/](http://ibl.github.io/cbio/)
+Live at: [https://ibl.github.io/cbio/](http://ibl.github.io/cbio/)
 
 ---
 
