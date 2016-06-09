@@ -17,6 +17,28 @@ cbio.\<cmd\>( callbackFunction , { argument<sub>i</sub> : value<sub>i</sub> , ..
 Many thanks to [MSKCC](http://www.mskcc.org/)'s [cBioPortal](http://www.cbioportal.org/public-portal/) team - this is a great public service !
 
 ---
+### get
+
+cbio.get = function(cmd,fun,parms)
+
+
+All commands below are a type of bio.get, sy submitting command cmd to cbio WebAPI and process it through callback function fun with option parameters parms. For example
+
+cbio.getTypesOfCancer is cbio.get('getTypesOfCancer')
+
+and
+
+‘’’javascript
+
+cbio.getProteinArrayData(
+	{
+		case_set_id:"coadread_tcga_RPPA",
+		array_info:1
+	},
+	function(x){console.log(cbio.table(x))}
+)
+
+‘’’
 
 ### getTypesOfCancer
 
