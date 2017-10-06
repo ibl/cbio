@@ -193,4 +193,4 @@ cbio.openUrl = function(url,op){
 
 cbio.oncoprint
 
-
+// new API endpoint http://www.cbioportal.org/api/swagger-ui.html#/
